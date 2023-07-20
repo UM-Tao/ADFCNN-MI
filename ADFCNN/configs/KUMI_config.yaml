@@ -1,0 +1,37 @@
+#### Path ####
+BASE_PATH: "./Datasets/KU_MI/"
+LOG_PATH: "./logs"
+CKPT_PATH: "./checkpoints"
+
+#### Setting step ####
+SEED: 42
+GPU_NUM: "0"
+num_workers: 0
+
+#### Training step ####
+EPOCHS: 1000
+batch_size: 16
+lr: 2e-3
+kernel_num: 8
+
+weight_decay: 0.075
+k_folds: 5
+
+#### Experiment variable ####
+task: "KU_MI"
+num_classes: 2
+num_channels: 20
+downsampling: 250
+
+num_subjects: 54
+sampling_rate: 1000
+target_subject: 0
+is_test: False
+
+#### Etc ###
+log_etc: "ADFCNN"
+momentum: 0.9
+
+##Filter bank####
+filter_bank: True
+bank: [[[4, 8]], [[8, 12]], [[12, 16]], [[16, 20]], [[20, 24]], [[24, 28]], [[28, 32]], [[32, 36]], [[36, 40]]]

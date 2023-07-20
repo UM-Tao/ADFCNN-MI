@@ -1,0 +1,36 @@
+#### Path ####
+BASE_PATH: "./Datasets/BCI_Competition_IV/BCI_Competition_IV_2a"
+LOG_PATH: "./logs"
+CKPT_PATH: "./checkpoints"
+
+#### Setting step ####
+SEED: 42
+GPU_NUM: "1"
+num_workers: 0
+
+#### Training step ####
+EPOCHS: 1000
+batch_size: 16
+lr: 1e-3
+window_length: 3
+
+weight_decay: 0.075
+k_folds: 5
+
+#### Experiment variable ####
+task: "BCICompet2a"
+num_classes: 4
+num_channels: 22
+downsampling: 0
+
+num_subjects: 4
+sampling_rate: 250
+target_subject: 0125
+is_test: False
+
+#### Etc ###
+log_etc: "IFNet"
+momentum: 0.9
+filter_bank: True
+#bank: [[[4, 8]], [[8, 12]], [[12, 16]], [[16, 20]], [[20, 24]], [[24, 28]], [[28, 32]], [[32, 36]], [[36, 40]]]
+bank: [[[4, 16]], [[16, 40]]]
