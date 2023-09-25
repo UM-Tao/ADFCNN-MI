@@ -34,7 +34,6 @@ class ADFCNN(nn.Module):
             Conv2dWithConstraint(F2, F2, (num_channels, 1), padding=0, groups=F2, bias=False, max_norm=2.),
             nn.BatchNorm2d(F2),
             nn.ELU(),
-            # pooling_layer((1, P1), stride=4),
             nn.Dropout(drop_out),
             Conv2dWithConstraint(F2, F2, kernel_size=[1, 1], padding='valid',
                                  max_norm=2.),
@@ -42,10 +41,6 @@ class ADFCNN(nn.Module):
             nn.ELU(),
             pooling_layer((1, 32), stride=32),
             nn.Dropout(drop_out),
-            # ActSquare(),
-            # pooling_layer((1, 45), stride=25),
-            # ActLog(),
-            # nn.Dropout(drop_out),
         )
 
         self.spatial_2 = nn.Sequential(
@@ -53,7 +48,6 @@ class ADFCNN(nn.Module):
                                                  max_norm=2.),
             nn.BatchNorm2d(F2),
             ActSquare(),
-            # pooling_layer((1, 75), stride=22),
             pooling_layer((1, 75), stride=25),
             ActLog(),
             nn.Dropout(drop_out),
@@ -72,7 +66,6 @@ class ADFCNN(nn.Module):
         x_2 = self.spectral_2(x)
 
         x_filter_1 = self.spatial_1(x_1)
-        # x_filter_1 = self.temporal(x_filter_1)
         x_filter_2 = self.spatial_2(x_2)
         x_noattention = torch.cat((x_filter_1, x_filter_2), 3)
         B2, C2, H2, W2 = x_noattention.shape
