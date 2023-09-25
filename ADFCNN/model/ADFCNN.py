@@ -22,9 +22,11 @@ class ADFCNN(nn.Module):
         # Spectral
         self.spectral_1 = nn.Sequential(
             Conv2dWithConstraint(1, F1, kernel_size=[1, 125], padding='same',  max_norm=2.),
+            nn.BatchNorm2d(F1),
             )
         self.spectral_2 = nn.Sequential(
             Conv2dWithConstraint(1, F1, kernel_size=[1, 30], padding='same', max_norm=2.),
+            nn.BatchNorm2d(F1),
             )
 
         # Spatial
@@ -57,23 +59,6 @@ class ADFCNN(nn.Module):
             nn.Dropout(drop_out),
 
         )
-
-        # Temporal
-        # self.temporal = nn.Sequential(
-        #     # nn.Conv2d(F2, F2, (1, 30), padding='same', groups=F2),
-        #     # nn.Conv2d(F2, F2, 1, stride=1, bias=False, padding=0),
-        #     Conv2dWithConstraint(F2, F2, kernel_size=[1, 1], padding='valid',
-        #                          max_norm=2.),
-        #     nn.BatchNorm2d(F2),
-        #     # nn.ELU(),
-        #     # pooling_layer((1, P2), stride=8),
-        #     # nn.Dropout(drop_out),
-        #     ActSquare(),
-        #     pooling_layer((1, 75), stride=22),
-        #     ActLog(),
-        #     nn.Dropout(drop_out),
-        #
-        # )
 
         self.flatten = nn.Flatten()
         self.drop = nn.Dropout(drop_out)
@@ -110,11 +95,7 @@ class ADFCNN(nn.Module):
         x_attention = x_attention + self.drop(x)
         x_attention = x_attention.reshape(B2, H2, W2, C2).permute(0, 3, 1, 2)
         x = self.drop(x_attention)
-        x_output1 = self.flatten(x_filter_1)
-        x_output2 = self.flatten(x_filter_2)
-        x_output3 = self.flatten(x_noattention)
-        x_output4 = self.flatten(x_attention)
-        return x, attn
+        return x
 
 
 class classifier(nn.Module):
@@ -144,7 +125,7 @@ class Net(nn.Module):
         self.classifier = classifier(num_classes)
 
     def forward(self, x):
-        x, atten = self.backbone(x)
+        x = self.backbone(x)
         x = self.classifier(x)
         return x
 
