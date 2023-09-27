@@ -197,7 +197,7 @@ class BCICompet2bIV(torch.utils.data.Dataset):
             events, annot = mne.events_from_annotations(raw)
 
             raw.load_data()
-            raw.filter(0., 38., fir_design='firwin')
+            raw.filter(0., 40., fir_design='firwin')
             raw.info['bads'] += ['EOG:ch01', 'EOG:ch02', 'EOG:ch03']
             
             picks = mne.pick_types(raw.info,
