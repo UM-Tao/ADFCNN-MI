@@ -24,7 +24,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--subject_num', type=int, default=17)
 parser.add_argument('--fold_num', type=int, default=0)
 parser.add_argument('--gpu_num', type=str, default='0')
-parser.add_argument('--config_name', type=str, default='bcicompet2b_config')
+parser.add_argument('--config_name', type=str, default='bcicompet2a_config')
 aargs = parser.parse_args()
 
 
