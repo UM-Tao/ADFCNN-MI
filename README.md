@@ -5,6 +5,8 @@
 
 * BCI-IV2b: https://www.bbci.de/competition/iv/#datasets
 
+* OpenBMI: http://gigadb.org/dataset/view/id/100542/File_page
+
 #Training#
 
 * Set parameters from .config.ymal
