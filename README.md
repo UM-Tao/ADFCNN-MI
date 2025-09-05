@@ -28,3 +28,13 @@
 * python == 3.10.0
 
 * torch == 1.12.0
+# Welcome to cite this paper:
+@article{tao2023adfcnn,
+  title={ADFCNN: Attention-based dual-scale fusion convolutional neural network for motor imagery brain--computer interface},
+  author={Tao, Wei and Wang, Ze and Wong, Chi Man and Jia, Ziyu and Li, Chang and Chen, Xun and Chen, CL Philip and Wan, Feng},
+  journal={IEEE Transactions on Neural Systems and Rehabilitation Engineering},
+  volume={32},
+  pages={154--165},
+  year={2024},
+  publisher={IEEE}
+}
